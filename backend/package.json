@@ -1,0 +1,29 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Technical test for Gestión y Servicios SRL: CRUD Online Store + Authentication + Dashboard",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon src/index.ts",
+    "test": "NODE_ENV=test jest --watchAll",
+    "seed": "node ./db/seed.js"
+  },
+  "author": "Ludmila Nannizzi",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "corss": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mongodb": "^6.16.0",
+    "mongoose": "^8.14.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.18",
+    "@types/express": "^5.0.1",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/node": "^22.15.17",
+    "typescript": "^5.8.3"
+  }
+}
