@@ -4,7 +4,7 @@ export interface IProduct extends Document {
   name: string;
   description: string;
   price: number;
-  image?: string; 
+  image?: string;
   category: 'electronics' | 'clothing' | 'books';
   stock: number;
   createdAt: Date;
@@ -12,45 +12,43 @@ export interface IProduct extends Document {
 }
 
 const productSchema = new Schema<IProduct>({
-  name: { 
-    type: String, 
-    required: [true, 'El nombre es obligatorio'], 
+  name: {
+    type: String,
+    required: [true, 'El nombre es obligatorio'],
     trim: true,
     maxlength: [100, 'Máximo 100 caracteres']
   },
-  description: { 
-    type: String, 
-    required: true 
+  description: {
+    type: String,
+    required: true
   },
-  price: { 
-    type: Number, 
+  price: {
+    type: Number,
     required: true,
     min: [0, 'El precio no puede ser negativo']
   },
-  image: { 
-    type: String 
+  image: {
+    type: String
   },
-  category: { 
-    type: String, 
+  category: {
+    type: String,
     enum: ['electronics', 'clothing', 'books'],
-    required: true 
+    required: true
   },
-  stock: { 
-    type: Number, 
-    default: 0, 
-    min: 0 
+  stock: {
+    type: Number,
+    default: 0,
+    min: 0
   },
-  createdAt: { 
-    type: Date, 
-    default: Date.now 
+  createdAt: {
+    type: Date,
+    default: Date.now
   }
 }, { timestamps: true });
 
 productSchema.methods.hasStock = function(): boolean {
   return this.stock > 0;
 };
-
-
 
 productSchema.pre<IProduct>('save', function(next) {
   if (this.stock < 0) {

@@ -12,12 +12,19 @@
   "author": "Ludmila Nannizzi",
   "license": "ISC",
   "dependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/multer": "^1.4.12",
+    "bcryptjs": "^3.0.2",
+    "cloudinary": "^2.6.1",
     "cors": "^2.8.5",
     "corss": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.16.0",
-    "mongoose": "^8.14.2"
+    "mongoose": "^8.14.2",
+    "multer": "^1.4.5-lts.2",
+    "recharts": "^2.15.3"
   },
   "devDependencies": {
     "@types/cors": "^2.8.18",
