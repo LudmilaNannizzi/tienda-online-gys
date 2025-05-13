@@ -3,6 +3,12 @@
 
 Este proyecto es una aplicación web full-stack que incluye una tienda online y un panel de administración. Está construido utilizando tecnologías modernas y sigue buenas prácticas de desarrollo.
 
+### Videos de prueba:
+- 🔗[POSTMAN](https://drive.google.com/file/d/1NHAr49bY6sAaRshtwVFuk_27k1rPhOA8/view?usp=sharing)
+
+- 🔗[SITIO](https://drive.google.com/file/d/1F3fyswzCGFxW_gVABFsvzC8dKKuaFsVZ/view?usp=sharing)
+
+
 ## 🛠 Herramientas Utilizadas
 
 ### Frontend
