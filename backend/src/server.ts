@@ -1,4 +1,4 @@
-// src/app.ts (o server.ts)
+
 import express from 'express';
 import productRoutes from './routes/productRoutes';
 

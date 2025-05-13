@@ -100,9 +100,9 @@ export default function ProductList() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.map((product) => (
           <div key={product._id} className="bg-gray-800 rounded-lg shadow-lg overflow-hidden border border-gray-700">
-            {product.image && (
+            {product.imageUrl && (
               <img
-                src={product.image}
+                src={product.imageUrl}
                 alt={product.name}
                 className="w-full h-48 object-cover"
               />

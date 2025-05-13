@@ -1,4 +1,3 @@
-// backend/src/utils/cloudinary.ts
 import { v2 as cloudinary } from 'cloudinary';
 
 cloudinary.config({
@@ -11,7 +10,7 @@ cloudinary.config({
 export const uploadImage = async (file: Express.Multer.File) => {
   try {
     const result = await cloudinary.uploader.upload(
-      `data:${file.mimetype};base64,${file.buffer.toString('base64')}`, // Conversión clave
+      `data:${file.mimetype};base64,${file.buffer.toString('base64')}`, 
       { folder: 'tienda-online' }
     );
     return result.secure_url;

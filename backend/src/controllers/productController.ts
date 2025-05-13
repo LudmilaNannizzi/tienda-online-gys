@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import Product from '../models/Product';
+import { uploadImage } from '../utils/cloudinary';
 
 export const getProducts = async (req: Request, res: Response) => {
   try {
@@ -22,7 +23,10 @@ export const getProducts = async (req: Request, res: Response) => {
     }
 
     const [products, total] = await Promise.all([
-      Product.find(filter).skip(skip).limit(limit),
+      Product.find(filter)
+        .sort({ createdAt: -1 })
+        .skip(skip)
+        .limit(limit),
       Product.countDocuments(filter)
     ]);
 
@@ -55,9 +59,15 @@ export const getProduct = async (req: Request, res: Response) => {
 
 export const createProduct = async (req: Request, res: Response) => {
   try {
-    const { name, description, price, stock, image } = req.body;
+    const { name, description, price, stock, category } = req.body;
+    let imageUrl = null;
 
-    if (!name || !description || !price || !stock) {
+   
+    if (req.file) {
+      imageUrl = await uploadImage(req.file);
+    }
+
+    if (!name || !description || !price || !stock || !category) {
       res.status(400).json({ message: 'Todos los campos son requeridos' });
       return;
     }
@@ -67,7 +77,8 @@ export const createProduct = async (req: Request, res: Response) => {
       description,
       price: parseFloat(price),
       stock: parseInt(stock),
-      image
+      image: imageUrl,
+      category
     });
 
     res.status(201).json(product);

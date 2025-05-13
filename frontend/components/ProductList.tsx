@@ -32,6 +32,8 @@ export default function ProductList() {
       const response = await getProducts(page, 9, searchQuery, categoryFilter);
       setProducts(response.products);
       setTotalPages(response.totalPages);
+      console.log(response.products);
+      
     } catch (err) {
       console.error('Error al cargar productos:', err);
       setError(err instanceof Error ? err.message : 'Error al cargar los productos');
@@ -119,9 +121,9 @@ export default function ProductList() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.map((product) => (
           <div key={product._id} className="bg-gray-800 rounded-lg shadow-lg overflow-hidden border border-gray-700">
-            {product.image ? (
+            {product.imageUrl || product.image ? (
               <img
-                src={product.image}
+                src={product.imageUrl || product.image}
                 alt={product.name}
                 className="w-full h-48 object-cover"
               />

@@ -122,4 +122,14 @@ export const createAdmin = async (req: Request, res: Response): Promise<void> =>
     console.error('Error en registro de administrador:', error);
     res.status(500).json({ message: 'Error al registrar administrador' });
   }
+};
+
+export const logout = async (req: Request, res: Response): Promise<void> => {
+  try {
+    
+    res.status(200).json({ message: 'Sesión cerrada exitosamente' });
+  } catch (error) {
+    console.error('Error en logout:', error);
+    res.status(500).json({ message: 'Error al cerrar sesión' });
+  }
 }; 

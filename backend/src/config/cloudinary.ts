@@ -8,7 +8,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-// Configurar multer para almacenamiento temporal
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'uploads/');
@@ -19,7 +19,6 @@ const storage = multer.diskStorage({
   }
 });
 
-// Filtro de archivos
 const fileFilter = (req: Express.Request, file: Express.Multer.File, cb: multer.FileFilterCallback) => {
   if (file.mimetype.startsWith('image/')) {
     cb(null, true);
@@ -32,7 +31,7 @@ export const upload = multer({
   storage: storage,
   fileFilter: fileFilter,
   limits: {
-    fileSize: 5 * 1024 * 1024 // 5MB
+    fileSize: 5 * 1024 * 1024 
   }
 });
 

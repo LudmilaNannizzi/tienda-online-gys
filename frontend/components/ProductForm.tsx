@@ -17,7 +17,8 @@ export default function ProductForm({ productId }: ProductFormProps) {
     description: '',
     price: '',
     stock: '',
-    imageUrl: ''
+    imageUrl: '',
+    category: ''
   });
 
   useEffect(() => {
@@ -30,7 +31,8 @@ export default function ProductForm({ productId }: ProductFormProps) {
             description: product.description,
             price: product.price.toString(),
             stock: product.stock.toString(),
-            imageUrl: product.imageUrl || ''
+            imageUrl: product.imageUrl || '',
+            category: product.category
           });
         } catch (err) {
           setError(err instanceof Error ? err.message : 'Error al cargar el producto');
@@ -51,7 +53,8 @@ export default function ProductForm({ productId }: ProductFormProps) {
         description: formData.description,
         price: parseFloat(formData.price),
         stock: parseInt(formData.stock),
-        imageUrl: formData.imageUrl
+        imageUrl: formData.imageUrl,
+        category: formData.category as "electronics" | "clothing" | "books"
       };
 
       if (productId) {
@@ -60,7 +63,7 @@ export default function ProductForm({ productId }: ProductFormProps) {
         await createProduct(productData);
       }
 
-      router.push('/admin/products');
+      router.push('/');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Error al guardar el producto');
     } finally {
@@ -68,7 +71,7 @@ export default function ProductForm({ productId }: ProductFormProps) {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
@@ -158,6 +161,25 @@ export default function ProductForm({ productId }: ProductFormProps) {
           onChange={handleChange}
           className="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 text-white shadow-sm focus:border-blue-500 focus:ring-blue-500"
         />
+      </div>
+
+      <div>
+        <label htmlFor="category" className="block text-sm font-medium text-gray-300">
+          Categoría
+        </label>
+        <select
+          id="category"
+          name="category"
+          value={formData.category}
+          onChange={handleChange}
+          required
+          className="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 text-white shadow-sm focus:border-blue-500 focus:ring-blue-500"
+        >
+          <option value="">Seleccione una categoría</option>
+          <option value="electronics">Electrónicos</option>
+          <option value="clothing">Ropa</option>
+          <option value="books">Libros</option>
+        </select>
       </div>
 
       <div className="flex justify-end space-x-4">

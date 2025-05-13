@@ -83,7 +83,7 @@ export default function EditProductForm({ product }: EditProductFormProps) {
         description: formData.description,
         price: formData.price,
         stock: formData.stock,
-        image: image ? URL.createObjectURL(image) : product.image
+        imageUrl: image ? URL.createObjectURL(image) : product.imageUrl
       };
 
       await updateProduct(product._id, productData);
@@ -193,10 +193,10 @@ export default function EditProductForm({ product }: EditProductFormProps) {
             className="w-full p-2 rounded bg-gray-800 text-gray-100 border border-gray-700 focus:border-blue-500 focus:outline-none"
             accept="image/*"
           />
-          {product.image && (
+          {product.imageUrl && (
             <div className="mt-2">
               <p className="text-gray-300 mb-2">Imagen actual:</p>
-              <img src={product.image} alt="Vista previa" className="w-32 h-32 object-cover rounded" />
+              <img src={product.imageUrl} alt="Vista previa" className="w-32 h-32 object-cover rounded" />
             </div>
           )}
         </div>
